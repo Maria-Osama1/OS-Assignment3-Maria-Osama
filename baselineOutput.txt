@@ -1,0 +1,67 @@
+
+╔═══════════════════════════════════════════════════════════════════════════════════════╗
+║           CONCURRENT CPU SCHEDULER SIMULATION (ASSIGNMENT 3 - SYNCHRONIZATION)          ║
+╠═══════════════════════════════════════════════════════════════════════════════════════╣
+║  Processes:       14                                                                  ║
+║  Time Quantum:    5000ms (nominal, simulated 5x faster)                               ║
+║  CPUs:            3                                                                   ║
+║  Student ID:      444052918                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+  ➕ P1 (Priority: 7) added to ready queue │ Remaining: 2724ms of 2724ms
+  ➕ P2 (Priority: 7) added to ready queue │ Remaining: 12221ms of 12221ms
+  ➕ P3 (Priority: 6) added to ready queue │ Remaining: 6912ms of 6912ms
+  ➕ P4 (Priority: 6) added to ready queue │ Remaining: 6361ms of 6361ms
+  ➕ P5 (Priority: 7) added to ready queue │ Remaining: 11093ms of 11093ms
+  ➕ P6 (Priority: 7) added to ready queue │ Remaining: 8871ms of 8871ms
+  ➕ P7 (Priority: 10) added to ready queue │ Remaining: 3778ms of 3778ms
+  ➕ P8 (Priority: 4) added to ready queue │ Remaining: 12076ms of 12076ms
+  ➕ P9 (Priority: 3) added to ready queue │ Remaining: 10391ms of 10391ms
+  ➕ P10 (Priority: 7) added to ready queue │ Remaining: 10436ms of 10436ms
+  ➕ P11 (Priority: 4) added to ready queue │ Remaining: 6040ms of 6040ms
+  ➕ P12 (Priority: 4) added to ready queue │ Remaining: 5061ms of 5061ms
+  ➕ P13 (Priority: 3) added to ready queue │ Remaining: 7064ms of 7064ms
+  ➕ P14 (Priority: 7) added to ready queue │ Remaining: 8740ms of 8740ms
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                  ▶  3 CPUs STARTING (CONCURRENT SCHEDULER)  ◀                    ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+Exception in thread "CPU-2" Exception in thread "CPU-1" Exception in thread "CPU-3" java.util.NoSuchElementException
+        at java.base/java.util.LinkedList.removeFirst(Unknown Source)
+        at ReadyQueue.poll(SchedulerSimulationSync.java:138)
+        at CpuWorker.run(SchedulerSimulationSync.java:264)
+java.lang.NullPointerException: Cannot read field "next" because "this.next" is null
+        at java.base/java.util.LinkedList$ListItr.next(Unknown Source)
+        at ReadyQueue.snapshot(SchedulerSimulationSync.java:151)
+        at CpuWorker.run(SchedulerSimulationSync.java:280)
+java.lang.NullPointerException: Cannot read field "next" because "this.next" is null
+        at java.base/java.util.LinkedList$ListItr.next(Unknown Source)
+        at ReadyQueue.snapshot(SchedulerSimulationSync.java:151)
+        at CpuWorker.run(SchedulerSimulationSync.java:280)
+
+═══ VERIFICATION (expected values are computed from YOUR seed) ═══
+  Context switches (quanta executed)     expected 31       observed 0        ✘ MISMATCH
+  Completed processes                    expected 14       observed 0        ✘ MISMATCH
+  Total service time (ms)                expected 111768   observed 0        ✘ MISMATCH
+  Busy-waiting polls (must be 0)         expected 0        observed 0        ✔
+  ✘ At least one check failed (see the ✘ lines above): a race condition or busy waiting is still present.
+
+═══ Process Summary Table (nominal ms) ═══
+Process   Priority  Burst       Waiting       Turnaround   
+──────────────────────────────────────────────────────────
+P1        7         2724        0             0            
+P2        7         12221       0             0            
+P3        6         6912        0             0            
+P4        6         6361        0             0            
+P5        7         11093       0             0            
+P6        7         8871        0             0            
+P7        10        3778        0             0            
+P8        4         12076       0             0            
+P9        3         10391       0             0            
+P10       7         10436       0             0            
+P11       4         6040        0             0            
+P12       4         5061        0             0            
+P13       3         7064        0             0            
+P14       7         8740        0             0            
+       
